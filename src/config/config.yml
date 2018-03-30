@@ -1,0 +1,27 @@
+database:
+  modelsPath: src/models
+  production:
+    driver: sqlite3
+    database: db/production.db
+  development:
+    driver: sqlite3
+    database: db/development.db
+  test:
+    driver: sqlite3
+    database: db/test.db
+acl: enabled
+events:
+  before: src/actions
+  after: src/actions
+triggers:
+  afterInitialize: src/triggers
+  beforeCreate: src/triggers
+  afterCreate: src/triggers
+  beforeSave: src/triggers
+  afterSave: src/triggers
+  beforeUpdate: src/triggers
+  afterUpdate: src/triggers
+  beforeDestroy: src/triggers
+  afterDestroy: src/triggers
+  beforeValidation: src/triggers
+  afterValidation: src/triggers

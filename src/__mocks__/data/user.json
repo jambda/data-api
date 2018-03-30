@@ -1,0 +1,10 @@
+{
+  "id": null,
+  "active": false,
+  "validated": true,
+  "name": "Test User",
+  "username": "test_user",
+  "email": "test@email.com",
+  "password": "123456asd",
+  "created": "2018-05-26"
+}

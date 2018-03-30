@@ -1,0 +1,41 @@
+name: user
+interfaces: [get, post, put, patch, delete]
+properties:
+  id:
+    type: Number
+    primary: true
+  active:
+    type: Boolean
+    default: false
+  validated:
+    type: Boolean
+    default: false
+  name:
+    type: String
+    index: true
+  username:
+    type: String
+    unique:
+      value: true
+      message: 'Username already exists'
+  email:
+    type: String
+    unique: true
+  password:
+    type: String
+    required: true
+    length:
+      min:
+        value: 5
+        message: 'Password is too short'
+  posts:
+    type: hasMany
+    target: post
+  created:
+    type: Date
+    default: now
+indexes:
+  indexOne:
+    columns: [name]
+  indexTwo:
+    columns: [username, email]

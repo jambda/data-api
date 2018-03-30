@@ -1,0 +1,20 @@
+name: post
+interfaces: [get, post, put, patch, delete]
+properties:
+  id:
+    type: Number
+    primary: true
+  name:
+    type: String
+    index: true
+  type:
+    type: String
+    unique: true
+  meta:
+    type: String
+  user:
+    type: belongsTo
+    target: user
+  created:
+    type: Date
+    default: now

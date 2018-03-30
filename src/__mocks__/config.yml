@@ -1,0 +1,8 @@
+database:
+  modelsPath: 'src/__mocks__/yml'
+  production:
+    driver: memory
+  development:
+    driver: memory
+  test:
+    driver: memory
