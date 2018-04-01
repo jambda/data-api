@@ -187,7 +187,7 @@ const applyRelations = schema =>
             })
         })
 
-        return schema
+        return schema.models
     }
 
 /**
