@@ -1,5 +1,3 @@
-import Boom from 'boom'
-
 /**
  * Builds a success response message
  *
@@ -14,25 +12,6 @@ const success = (code, response, context) => {
 }
 
 /**
- * Builds a error message
- *
- * @param {object} boom A Boom object
- * @param {object} context The request context
- * @returns {object} {{headers: {Content-Type}, statusCode, body}}
- */
-const failure = (boom, context) => {
-    __headers(context)
-
-    if (!boom.isBoom) {
-        boom = new Boom(boom)
-    }
-
-    return context.json({
-        message: boom.output.payload.message
-    })
-}
-
-/**
  * Private method to get the response headers
  *
  * @param {Object} context The request context
@@ -44,4 +23,4 @@ const __headers = context => {
     return context
 }
 
-export { success, failure }
+export { success }

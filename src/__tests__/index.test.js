@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import yaml from 'yamljs'
-import entityBuilder from '../index'
+import { registerRoutes } from './../index'
 
 const config = yaml.parse(String(fs.readFileSync('src/__mocks__/config.yml')))
 const app = {
@@ -19,7 +19,7 @@ app.use = jest.fn((path, router) => {
 
 describe('Entity Builder', () => {
     beforeAll(async () => {
-        return entityBuilder(app, config.database)
+        return registerRoutes(app, config.database)
     })
 
     it('Should add one route per model to the app instance', async () => {

@@ -72,8 +72,8 @@ const createRoutes = app =>
  * @param {object} config The config object
  * @returns {schema.Schema} The schema instance
  */
-export const registerRoutes = (app, config) => {
-    return pipe(
+export const registerRoutes = (app, config) =>
+    pipe(
         checkEnvironment,
         createConnection,
         schema => {
@@ -83,4 +83,3 @@ export const registerRoutes = (app, config) => {
         loadModels(config),
         createRoutes(app)
     )(config)
-}
