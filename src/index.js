@@ -23,12 +23,13 @@ const checkEnvironment = config => {
 }
 
 /**
- * Creates a new schema connection
+ * Constructor the returns a function to get|create a schema connection
  *
- * @param {Object} config The config object
- * @returns {schema.Schema} The Schema instance
+ * @param {Object} app The application object
+ * @returns {function(Object:config):schema.Schema} A function
  */
-const createConnection = config => new Schema(config.driver, config)
+const createConnection = app => config =>
+    app.schema || new Schema(config.driver, config)
 
 /**
  * loadModels constructor
@@ -49,18 +50,24 @@ const loadModels = config =>
  * createRoutes constructor
  *
  * @param {object} app The express app
+ * @param {object} config The config object
  * @returns {Function} createRoutes
  */
-const createRoutes = app =>
+const createRoutes = (app, config) =>
     /**
      * Create routes for each available model
      *
-     * @param {Object} schema The loaded schema
+     * @param {Object} models The created models
      * @returns {Object[]} The array of
      */
-    schema => {
-        Object.values(schema.models).map(model => {
-            app.use(`/${model.modelName}`, createRoute(model))
+    models => {
+        Object.values(Object.keys(models)).map(model => {
+            app.use(
+                `${config.prefix ? `/${config.prefix}` : ''}/${
+                    models[model].modelName
+                }`,
+                createRoute(models[model])
+            )
         })
         return app
     }
@@ -75,11 +82,11 @@ const createRoutes = app =>
 export const registerRoutes = (app, config) =>
     pipe(
         checkEnvironment,
-        createConnection,
+        createConnection(app),
         schema => {
             app.schema = schema
             return schema
         },
         loadModels(config),
-        createRoutes(app)
+        createRoutes(app, config)
     )(config)
