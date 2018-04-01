@@ -11,7 +11,7 @@
     "jest:u": "jest -u --coverage",
     "lint:js": "eslint lib",
     "lint:js:fix": "eslint lib --fix",
-    "compile": "babel --ignore node_modules -d lib/ src/",
+    "compile": "babel --ignore node_modules -d dist/ src/",
     "sls": "sls deploy --verbose",
     "test:u": "npm-run-all lint:js copy babel jest:u"
   },
