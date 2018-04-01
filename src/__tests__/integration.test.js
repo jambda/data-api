@@ -7,7 +7,7 @@ import error from './../__mocks__/error'
 import { clone } from './../helper/util'
 import user from './../__mocks__/data/user.json'
 import posts from './../__mocks__/data/posts.json'
-import entityBuilder from '../index'
+import { registerRoutes } from './../index'
 
 const config = yaml.parse(String(fs.readFileSync('src/__mocks__/config.yml')))
 const application = express()
@@ -18,7 +18,7 @@ let id, record
 
 describe('Resource Routes:', function() {
     beforeAll(async () => {
-        await entityBuilder(application, config.database)
+        await registerRoutes(application, config.database)
         return application.use(error)
     })
 
