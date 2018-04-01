@@ -2,7 +2,7 @@
   "name": "@jambda/data-api",
   "version": "1.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "jair Milanes",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,10 @@
     "lint:js:fix": "eslint lib --fix",
     "compile": "babel --ignore node_modules -d dist/ src/",
     "sls": "sls deploy --verbose",
-    "test:u": "npm-run-all lint:js copy babel jest:u"
+    "test:u": "npm-run-all lint:js copy babel jest:u",
+    "release:major": "git add package.json && git commit -m 'package version bump' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "git add package.json && git commit -m 'package version bump' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "git add package.json && git commit -m 'package version bump' && npm version patch && git push origin && git push origin --tags"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
