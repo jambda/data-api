@@ -284,3 +284,28 @@ export const truncate = model => () => {
         })
     })
 }
+
+/**
+ * Loads all methos for a given model
+ *
+ * @param {object} model The model to build the repository for
+ * @borrows get as get
+ * @borrows list as list
+ * @borrows count as count
+ * @borrows empty as empty
+ * @borrows create as create
+ * @borrows createBulk as createBulk
+ * @borrows put as put
+ * @borrows patch as patch
+ * @returns {object} Loaded repository
+ */
+export const load = model => ({
+    get: get(model),
+    list: list(model),
+    count: count(model),
+    empty: empty(model),
+    create: create(model),
+    createBulk: createBulk(model),
+    put: put(model),
+    patch: patch(model)
+})

@@ -73,6 +73,16 @@ const createRoutes = (app, config) =>
     }
 
 /**
+ * @jambda/data-api lifecycle event preloadData
+ *
+ * @param {object} app The express app
+ * @param {function} dispatcher The Jambda event dispatcher
+ * @returns {object[]} An array of models
+ */
+const dispatchPreloadData = (app, dispatcher) =>
+    dispatcher('preloadData', [loader])
+
+/**
  * Connects to the database
  *
  * @param {object} app The app object
